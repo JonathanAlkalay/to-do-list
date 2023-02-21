@@ -1,13 +1,16 @@
 import { ToDoList } from "./to-do-list/ToDoList";
+import {Provider} from 'react-redux'
+import { createStore } from "./app-state/Store";
 
 
-export const App = () => {
+const store = createStore();
 
-  const items = [{title: 'Eggs'}, {title:'Cheese'}, {title:'Milk'}]
+const App = () => {
+
   return (
-    <div >
-      <ToDoList items={items}/>
-    </div>
+    <Provider store={store}>
+      <ToDoList />
+    </Provider>
   );
 }
 

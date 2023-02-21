@@ -1,10 +1,10 @@
-import ToDoListApiSlice from "./RootApiSlice";
+import RootApiSlice from "./RootApiSlice";
 import {ToDoItemDTO} from 'commonDataModel'
 
-const ToDoListManagerApiSlice = ToDoListApiSlice.injectEndpoints({
+const ToDoListApiSlice = RootApiSlice.injectEndpoints({
     endpoints: builder => ({
 
-      getToDos: builder.query<ToDoItemDTO, void>({
+      getToDos: builder.query<ToDoItemDTO[], void>({
         query: () => {
           return {
             url: 'todos',
@@ -49,4 +49,4 @@ export const {
   useAddItemMutation,
   useDeleteItemMutation,
   useEditItemMutation
-} = ToDoListManagerApiSlice
+} = ToDoListApiSlice

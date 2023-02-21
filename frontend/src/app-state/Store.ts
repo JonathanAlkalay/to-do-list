@@ -1,12 +1,12 @@
 import { combineReducers, configureStore, Middleware } from "@reduxjs/toolkit";
-import ToDoListApiSlice from './api/RootApiSlice'
+import RootApiSlice from './api/RootApiSlice'
 
 const reducer = combineReducers({
-    [ToDoListApiSlice.reducerPath]: ToDoListApiSlice.reducer
+    [RootApiSlice.reducerPath]: RootApiSlice.reducer
 });
 
 const middleware: Middleware[] = [
-    ToDoListApiSlice.middleware
+    RootApiSlice.middleware
 ];
 
 export type RootState = ReturnType<typeof reducer>;
