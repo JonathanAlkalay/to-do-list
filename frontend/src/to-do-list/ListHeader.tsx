@@ -1,7 +1,9 @@
 import { styled } from '@mui/system';
 import AddIcon from '@mui/icons-material/Add';
-import { IconButton } from '../common/components/IconButton';
+import { PrimaryButton } from '../common/components/PrimaryButton';
 import { Typography } from '@mui/material';
+import { ToDoItemEditor } from './ToDoItemEditor';
+import { useState } from 'react';
 
 
 const StyledContainer = styled('div')({
@@ -14,13 +16,19 @@ const StyledContainer = styled('div')({
     textAlign: 'center'
 })
 
-
 export const ListHeader = () => {
 
+    const [modalOpened, setModalOpened] = useState<boolean>(false);
+    const toggleModal = () => setModalOpened(prev => !prev);
+
     return (
-        <StyledContainer>
-            <Typography variant='body1'> To Do List </Typography>
-            <IconButton icon={<AddIcon/>} caption='Add new Item'/>
-        </StyledContainer>
+        <>
+            <StyledContainer>
+                <Typography variant='body1'> To Do List </Typography>
+                <PrimaryButton onClick={toggleModal} icon={<AddIcon/>} caption='Add new Item'/>
+            </StyledContainer>
+
+            <ToDoItemEditor isOpened={modalOpened} closeModal={toggleModal} editorMode={'add'}/>
+        </>
     );
 }

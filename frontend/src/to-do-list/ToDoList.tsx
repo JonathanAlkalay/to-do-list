@@ -4,6 +4,8 @@ import { CustomListItem } from './CustomListItem';
 import { ListHeader } from './ListHeader';
 import { useGetToDosQuery } from '../app-state/api/ToDoListApi';
 
+
+
 const StyledList = styled(List)({
     width: '35vw',
 });
@@ -26,7 +28,7 @@ export const ToDoList = () => {
                 <div>
                     <StyledList>
                         {
-                            items?.map(({title}) =>  <CustomListItem title={title}/> )
+                            items?.map(({title, id}) =>  <CustomListItem title={title} toDoItemId={id!}/> )
                         }
                     </StyledList>
                 </div>

@@ -11,6 +11,7 @@ const ToDoListApiSlice = RootApiSlice.injectEndpoints({
             method: 'GET',
           }
         },
+        providesTags: ['ToDos']
       }),
 
       addItem: builder.mutation<void, ToDoItemDTO>({
@@ -21,6 +22,7 @@ const ToDoListApiSlice = RootApiSlice.injectEndpoints({
             body: toDoItem
           }
         },
+        invalidatesTags: ['ToDos']
       }),
 
       editItem: builder.mutation<void, ToDoItemDTO>({
@@ -31,6 +33,7 @@ const ToDoListApiSlice = RootApiSlice.injectEndpoints({
             body: toDoItem
           }
         },
+        invalidatesTags: ['ToDos']
       }),
 
       deleteItem: builder.mutation<void, string>({
@@ -40,6 +43,7 @@ const ToDoListApiSlice = RootApiSlice.injectEndpoints({
             method: 'DELETE',
           }
         },
+        invalidatesTags: ['ToDos']
       }),
     }),
   })
