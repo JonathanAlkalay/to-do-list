@@ -7,7 +7,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - DATABASE_URL=mysql://user:secret@localhost:3306/todos
+      - DATABASE_URL=mysql://user:secret@todo_db:3306/todos
     depends_on:
       todo_db:
         condition: service_healthy
