@@ -1,5 +1,10 @@
-
 services:
+
+  client:
+    image: to_do_list_frontend:0.01
+    container_name: td_frontend
+    ports:
+      - "3000:80"
 
   backend:
     image: to_do_list_backend:0.01
@@ -11,7 +16,6 @@ services:
     depends_on:
       todo_db:
         condition: service_healthy
-
 
   todo_db:
     image: mysql:latest
@@ -31,5 +35,4 @@ services:
     healthcheck:
       test: ["CMD", 'mysqladmin', 'ping', '-h', 'todo_db', '-u$$MYSQL_ROOT_USER', '-p$$MYSQL_ROOT_PASSWORD' ]
       timeout: 5s
-      retries: 10  
-
+      retries: 10
