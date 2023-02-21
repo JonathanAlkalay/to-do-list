@@ -1,0 +1,7 @@
+**/node_mudules
+.git
+
+frontend/build
+backend/dist
+
+backend/init.todo.sql
