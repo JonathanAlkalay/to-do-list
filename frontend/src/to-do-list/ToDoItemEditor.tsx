@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField';
 import { useAddItemMutation, useEditItemMutation } from '../app-state/api/ToDoListApi';
 import { useState } from 'react';
 import { ToDoItemDTO } from 'commonDataModel';
+import styled from '@emotion/styled';
 
 
 interface ToDoItemEditorProps{
@@ -22,6 +23,19 @@ export const ToDoItemEditor = ({ isOpened, editorMode, toDoItem, closeModal }: T
     )
 }
 
+
+const ModalChildrenContainer = styled('div')({
+    marginTop: '29vh',
+    marginLeft: '35vw',
+    width: '40%',
+    height: '40%',
+    background: 'lightGrey',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '8vh',
+    textAlign: 'center'
+})
+
 interface ModalChildrenProps{
     editorMode: 'add' | 'edit';
     toDoItem?: ToDoItemDTO;
@@ -30,7 +44,7 @@ interface ModalChildrenProps{
 const ModalChildren = ({ editorMode, toDoItem, closeModal }: ModalChildrenProps) =>{
 
     const [newTitleValue, setNewTitleValue] = useState<string | undefined>(toDoItem?.title);
-    const handleTitleChange = (e) => setNewTitleValue(e.target.value)
+    const handleTitleChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => setNewTitleValue(e.target.value)
 
     const [ addItem ] = useAddItemMutation();
     const [ editItem ] = useEditItemMutation();
@@ -40,15 +54,15 @@ const ModalChildren = ({ editorMode, toDoItem, closeModal }: ModalChildrenProps)
             () => { editItem({id: toDoItem?.id, title: newTitleValue ?? ''}); closeModal() }
 
     return (
-        <div>
+        <ModalChildrenContainer>
             <Typography> { editorMode === 'add'? 'Add new Item': 'Edit toDo' } </Typography>
 
             <TextField value={newTitleValue} onChange={handleTitleChange} id="outlined-basic" label="add description" variant="outlined" />
 
-            <div>
+            <div className='buttonContainer'>
                 <PrimaryButton onClick={closeModal} caption={'Cancel'}/>
                 <PrimaryButton onClick={handleSave} caption={'Save'}/>
             </div>
-        </div>
+        </ModalChildrenContainer>
     )
 }
